@@ -486,10 +486,6 @@
         {
           "match": "=>",
           "name": "punctuation.definition.mapping.arrow"
-        },
-        {
-          "match": "\\*",
-          "name": "constant.language.wildcard"
         }
       ]
     },
