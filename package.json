@@ -1,10 +1,15 @@
 {
-  "name": "mech-lang-support",
-  "displayName": "mech-lang-support",
+  "name": "mech",
+  "displayName": "Mech",
   "description": "Mech language support",
-  "version": "0.0.1",
+  "version": "0.3.5",
+  "publisher": "RANSAC Labs",
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.116.0"
+  },
+  "repository": {
+      "url": "https://github.com/mech-lang/mech.git"
   },
   "categories": ["Programming Languages"],
   "activationEvents": [
@@ -16,7 +21,7 @@
       {
         "id": "mech",
         "aliases": ["Mech"],
-        "extensions": [".mec"],
+        "extensions": [".mec", ".🤖"],
         "configuration": "./language-configuration.json"
       }
     ],
