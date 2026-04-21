@@ -45,7 +45,7 @@
     "markdown": {
       "patterns": [
         {
-          "begin": "^```(?!\\s*mech\\b).*$",
+          "begin": "^```(?!\\s*mech\\b)\\s*\\S.*$",
           "end": "^```\\s*$",
           "name": "markup.raw.block.fenced"
         },
