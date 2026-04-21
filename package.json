@@ -3,7 +3,7 @@
   "displayName": "Mech",
   "description": "Mech language support",
   "version": "0.3.5",
-  "publisher": "RANSAC Labs",
+  "publisher": "RANSAC.SYS",
   "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.116.0"
