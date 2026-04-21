@@ -9,6 +9,7 @@
     { "include": "#sets" },
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
+    { "include": "#patternMatching" },
     { "include": "#functions" },
     { "include": "#operators" },
     { "include": "#booleans" },
@@ -247,6 +248,29 @@
             "2": { "name": "entity.name.type.kind" },
             "3": { "name": "punctuation.definition.type.end" }
           }
+        }
+      ]
+    },
+
+    "patternMatching": {
+      "patterns": [
+        {
+          "match": "^\\s*([|├└])\\s+",
+          "captures": {
+            "1": { "name": "punctuation.definition.pattern-branch" }
+          }
+        },
+        {
+          "match": "\\?(?=\\s|$)",
+          "name": "keyword.operator.pattern-match"
+        },
+        {
+          "match": "=>",
+          "name": "keyword.operator.pattern-result"
+        },
+        {
+          "match": "\\*",
+          "name": "constant.language.wildcard"
         }
       ]
     },
