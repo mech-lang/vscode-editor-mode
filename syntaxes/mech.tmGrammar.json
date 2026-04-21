@@ -567,8 +567,12 @@
     "identifiers": {
       "patterns": [
         {
-          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*(?:\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*)+\\b",
-          "name": "variable.other.readwrite.indexed"
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*\\b(?=\\.[\\p{L}_])",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*",
+          "name": "variable.other.member-access"
         },
         {
           "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
