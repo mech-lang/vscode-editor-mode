@@ -1,9 +1,9 @@
 {
   "scopeName": "source.mech",
   "patterns": [
-    { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#markdown" },
+    { "include": "#comments" },
     { "include": "#blockHeaders" },
     { "include": "#arrays" },
     { "include": "#sets" },
@@ -23,8 +23,15 @@
     "comments": {
       "patterns": [
         {
-          "match": "^\\s*--.*$",
-          "name": "comment.line.double-dash"
+          "begin": "--(?=\\s|\\{)",
+          "end": "$",
+          "name": "comment.line.double-dash",
+          "patterns": [
+            {
+              "match": "\\{[^}]+\\}",
+              "name": "meta.comment.inline-eval"
+            }
+          ]
         }
       ]
     },
@@ -256,6 +263,14 @@
 
     "patternMatching": {
       "patterns": [
+        {
+          "match": "^(\\s*[|├└]\\s+)([^=\\n]+?)(\\s*)(=>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.pattern-branch" },
+            "2": { "name": "meta.pattern.guard" },
+            "4": { "name": "punctuation.definition.mapping.arrow" }
+          }
+        },
         {
           "match": "^\\s*([|├└])\\s+",
           "captures": {
