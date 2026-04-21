@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://gitlab.com/mech-lang/assets/-/raw/v0.3-beta/images/mika/hello.png?ref_type=heads" alt="Mika" width="220" />
+  <img src="https://gitlab.com/mech-lang/assets/-/raw/main/images/mika/mika-scene-vscode.png?ref_type=heads" alt="Mika" width="220" />
 </p>
 
 # Mech Language Support for VS Code
@@ -14,9 +14,6 @@ Syntax support for `.mec` files in Visual Studio Code.
 
 - Mech language registration (`mech`) for `.mec` files.
 - TextMate grammar for Mech syntax highlighting.
-- Support for Mech-style line comments (`--`).
-- Bracket/quote auto-closing and surrounding pairs for `{}`, `[]`, `()`, `""`, and `''`.
-- Embedded Mech fenced blocks in Markdown (```mech) highlighted by the grammar.
 
 ## Scope
 
@@ -36,18 +33,6 @@ It does **not** currently include:
 1. Install **Mech Language Support** from the VS Code Marketplace.
 2. Open or create a `*.mec` file.
 3. Confirm the language mode is set to **Mech**.
-
-## Example
-
-```mech
-x := 1..=10
-~out<[string]> := x
-ix2 := (x % 2) == 0
-ix3 := (x % 3) == 0
-out[ix2] = "✨"
-out[ix3] = ""
-out[ix2 && ix3] = "✨✨"
-```
 
 ## Related links
 
