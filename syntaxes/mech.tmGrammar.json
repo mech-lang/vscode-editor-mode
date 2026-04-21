@@ -328,12 +328,10 @@
           "beginCaptures": {
             "1": { "name": "punctuation.definition.pattern-branch" }
           },
-          "end": "(\\s*)(=>|->)",
-          "endCaptures": {
-            "2": { "name": "punctuation.definition.mapping.arrow" }
-          },
+          "end": "$",
           "name": "meta.pattern.guard",
           "patterns": [
+            { "match": "=>|->", "name": "punctuation.definition.mapping.arrow" },
             { "include": "#arrays" },
             { "include": "#tuples" },
             { "include": "#sets" },
