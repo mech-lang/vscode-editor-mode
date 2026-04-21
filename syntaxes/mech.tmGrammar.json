@@ -364,7 +364,7 @@
     "assignment": {
       "patterns": [
         {
-          "match": "^\\s*([\\p{L}_][\\p{L}\\p{N}_/\\-']*)(?=\\s*=\\s*[^=])",
+          "match": "^\\s*([\\p{L}_][\\p{L}\\p{N}_/\\-]*)(?=\\s*=\\s*[^=])",
           "captures": {
             "1": { "name": "variable.other.definition" }
           }
@@ -521,6 +521,10 @@
           "name": "keyword.operator.set"
         },
         {
+          "match": "'",
+          "name": "keyword.operator.transpose"
+        },
+        {
           "match": "[:+\\-*/=|^]",
           "name": "keyword.operator"
         }
@@ -569,12 +573,20 @@
     "identifiers": {
       "patterns": [
         {
-          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*\\b(?=\\.[\\p{L}_])",
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\.[\\p{L}_])",
           "name": "variable.other.readwrite"
         },
         {
           "match": "\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*",
           "name": "entity.other.attribute-name.member-access"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=')",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\s*(?:\\*\\*|[+\\-*/=]))",
+          "name": "variable.other.readwrite"
         },
         {
           "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
@@ -593,7 +605,7 @@
           "name": "variable.other.readwrite"
         },
         {
-          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
           "name": "variable.other.readwrite"
         }
       ]
