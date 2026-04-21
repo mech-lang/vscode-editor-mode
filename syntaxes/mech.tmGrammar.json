@@ -83,6 +83,20 @@
           "name": "markup.raw.block.latex"
         },
         {
+          "match": "^(\\[\\^[^\\]]+\\])(\\s*:\\s*)",
+          "captures": {
+            "1": { "name": "constant.other.footnote.label" },
+            "2": { "name": "punctuation.separator.key-value" }
+          }
+        },
+        {
+          "match": "^(\\[\\d+\\])(\\s*:\\s*)",
+          "captures": {
+            "1": { "name": "constant.other.reference.label" },
+            "2": { "name": "punctuation.separator.key-value" }
+          }
+        },
+        {
           "begin": "^(\\s*)(\\()(\\d+(?:\\.\\d+)*)(\\))(\\s+.*)?$",
           "beginCaptures": {
             "2": { "name": "punctuation.definition.section.begin" },
@@ -149,6 +163,14 @@
         {
           "match": "\\$\\$[^$]+\\$\\$",
           "name": "markup.inline.raw.latex"
+        },
+        {
+          "match": "\\[\\^[^\\]]+\\]",
+          "name": "constant.other.footnote.reference"
+        },
+        {
+          "match": "\\[\\d+\\]",
+          "name": "constant.other.reference"
         },
         {
           "match": "\\*\\*[^*]+\\*\\*",
