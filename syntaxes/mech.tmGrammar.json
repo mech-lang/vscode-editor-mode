@@ -359,6 +359,12 @@
     "assignment": {
       "patterns": [
         {
+          "match": "^\\s*([\\p{L}_][\\p{L}\\p{N}_/\\-']*)(?=\\s*=\\s*[^=])",
+          "captures": {
+            "1": { "name": "variable.other.definition" }
+          }
+        },
+        {
           "match": "(~)\\s*([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?=\\s*:=)",
           "captures": {
             "1": { "name": "keyword.operator.mutability" },
@@ -382,6 +388,10 @@
         },
         {
           "match": ":=",
+          "name": "keyword.operator.assignment"
+        },
+        {
+          "match": "(?<![<>=!])=(?![=>=])",
           "name": "keyword.operator.assignment"
         }
       ]
@@ -570,7 +580,11 @@
           }
         },
         {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
           "name": "variable.other.readwrite"
         }
       ]
