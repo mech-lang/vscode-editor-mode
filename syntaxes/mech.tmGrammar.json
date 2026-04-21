@@ -274,7 +274,7 @@
           "match": "^(\\s*[|├└]\\s+)([^=\\n]+?)(\\s*)(=>)",
           "captures": {
             "1": { "name": "punctuation.definition.pattern-branch" },
-            "2": { "name": "meta.pattern.guard" },
+            "2": { "name": "variable.other.readwrite.pattern-guard" },
             "4": { "name": "punctuation.definition.mapping.arrow" }
           }
         },
