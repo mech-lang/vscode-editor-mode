@@ -1,71 +1,56 @@
-# mech-lang-support README
+<p align="center">
+  <img src="https://mech-lang.org/img/logo.png" alt="Mech" width="420" />
+</p>
 
-This is the README for your extension "mech-lang-support". After writing up a brief description, we recommend including the following sections.
+<p align="center">
+  <img src="https://gitlab.com/mech-lang/assets/-/raw/v0.3-beta/images/mika/hello.png?ref_type=heads" alt="Mika" width="220" />
+</p>
 
-## Features
+# Mech Language Support for VS Code
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Syntax support for `.mec` files in Visual Studio Code.
 
-For example if there is an image subfolder under your extension project workspace:
+## What this extension provides
 
-\!\[feature X\]\(images/feature-x.png\)
+- Mech language registration (`mech`) for `.mec` files.
+- TextMate grammar for Mech syntax highlighting.
+- Support for Mech-style line comments (`--`).
+- Bracket/quote auto-closing and surrounding pairs for `{}`, `[]`, `()`, `""`, and `''`.
+- Embedded Mech fenced blocks in Markdown (```mech) highlighted by the grammar.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Scope
 
-## Requirements
+This extension is focused on editor language support only:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Syntax highlighting and tokenization.
+- Basic editor behaviors from language configuration.
 
-## Extension Settings
+It does **not** currently include:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+- LSP features (hover, completion, diagnostics, go-to-definition).
+- Formatting.
+- Debugging integration.
 
-For example:
+## Quick start
 
-This extension contributes the following settings:
+1. Install **Mech Language Support** from the VS Code Marketplace.
+2. Open or create a `*.mec` file.
+3. Confirm the language mode is set to **Mech**.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Example
 
-## Known Issues
+```mech
+x := 1..=10
+~out<[string]> := x
+ix2 := (x % 2) == 0
+ix3 := (x % 3) == 0
+out[ix2] = "✨"
+out[ix3] = ""
+out[ix2 && ix3] = "✨✨"
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Related links
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Mech repo: https://github.com/mech-lang/mech
+- Documentation: https://docs.mech-lang.org
+- Try Mech: https://try.mech-lang.org
