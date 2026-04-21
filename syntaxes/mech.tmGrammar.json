@@ -6,6 +6,7 @@
     { "include": "#markdown" },
     { "include": "#arrays" },
     { "include": "#assignment" },
+    { "include": "#kindAnnotations" },
     { "include": "#functions" },
     { "include": "#operators" },
     { "include": "#booleans" },
@@ -145,14 +146,36 @@
     "assignment": {
       "patterns": [
         {
-          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?=\\s*:=)",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?:\\s*<([A-Za-z_][A-Za-z0-9_]*)>)?(?=\\s*:=)",
           "captures": {
-            "1": { "name": "variable.other.definition" }
+            "1": { "name": "variable.other.definition" },
+            "2": { "name": "entity.name.type.kind" }
+          }
+        },
+        {
+          "match": "(<)([A-Za-z_][A-Za-z0-9_]*)(>)(?=\\s*:=)",
+          "captures": {
+            "1": { "name": "punctuation.definition.type.begin" },
+            "2": { "name": "entity.name.type.kind" },
+            "3": { "name": "punctuation.definition.type.end" }
           }
         },
         {
           "match": ":=",
           "name": "keyword.operator.assignment"
+        }
+      ]
+    },
+
+    "kindAnnotations": {
+      "patterns": [
+        {
+          "match": "(<)([A-Za-z_][A-Za-z0-9_]*)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.type.begin" },
+            "2": { "name": "entity.name.type.kind" },
+            "3": { "name": "punctuation.definition.type.end" }
+          }
         }
       ]
     },
@@ -169,7 +192,7 @@
     "operators": {
       "patterns": [
         {
-          "match": "[+\\-*/=]",
+          "match": "[+\\-*/=|]",
           "name": "keyword.operator"
         }
       ]
