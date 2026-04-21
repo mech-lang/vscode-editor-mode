@@ -45,6 +45,35 @@
     "markdown": {
       "patterns": [
         {
+          "begin": "^```\\s*mech\\b.*$",
+          "end": "^```\\s*$",
+          "name": "meta.embedded.block.mech",
+          "patterns": [
+            { "include": "#comments" },
+            { "include": "#blockHeaders" },
+            { "include": "#tables" },
+            { "include": "#arrays" },
+            { "include": "#tuples" },
+            { "include": "#sets" },
+            { "include": "#assignment" },
+            { "include": "#kindAnnotations" },
+            { "include": "#fsm" },
+            { "include": "#patternMatching" },
+            { "include": "#functions" },
+            { "include": "#operators" },
+            { "include": "#booleans" },
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#identifiers" },
+            { "include": "#terminators" }
+          ]
+        },
+        {
+          "begin": "^```\\s*$",
+          "end": "^```\\s*$",
+          "name": "markup.raw.block.fenced"
+        },
+        {
           "begin": "^```(?!\\s*mech\\b)\\s*\\S.*$",
           "end": "^```\\s*$",
           "name": "markup.raw.block.fenced"
