@@ -11,6 +11,7 @@
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
     { "include": "#fsm" },
+    { "include": "#comprehensions" },
     { "include": "#patternMatching" },
     { "include": "#functions" },
     { "include": "#operators" },
@@ -166,6 +167,7 @@
             { "include": "#booleans" },
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
+            { "include": "#comprehensions" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -192,6 +194,7 @@
             { "include": "#booleans" },
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
+            { "include": "#comprehensions" },
             { "include": "#identifiers" },
             { "match": ",", "name": "punctuation.separator.tuple" },
             { "include": "#arrays" },
@@ -255,6 +258,7 @@
             { "include": "#booleans" },
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
+            { "include": "#comprehensions" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -321,6 +325,31 @@
       ]
     },
 
+    "comprehensions": {
+      "patterns": [
+        {
+          "match": "<-",
+          "name": "keyword.operator.comprehension.bind"
+        },
+        {
+          "match": "\\.\\.",
+          "name": "keyword.operator.range"
+        },
+        {
+          "match": "⩵",
+          "name": "keyword.operator.equality"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.comprehension"
+        },
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b",
+          "name": "variable.other.readwrite.comprehension"
+        }
+      ]
+    },
+
     "patternMatching": {
       "patterns": [
         {
@@ -341,6 +370,7 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#fsm" },
+            { "include": "#comprehensions" },
             { "include": "#functions" },
             { "include": "#identifiers" },
             { "include": "#operators" },
