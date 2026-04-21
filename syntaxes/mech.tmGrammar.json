@@ -572,7 +572,7 @@
         },
         {
           "match": "\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*",
-          "name": "variable.other.member-access"
+          "name": "entity.other.attribute-name.member-access"
         },
         {
           "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
