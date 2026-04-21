@@ -439,8 +439,8 @@
             { "include": "#comprehensions" },
             { "include": "#functions" },
             { "include": "#identifiers" },
-            { "include": "#operators" },
-            { "match": "\\*", "name": "constant.language.wildcard" }
+            { "match": "\\*", "name": "constant.language.wildcard" },
+            { "include": "#operators" }
           ]
         },
         {
