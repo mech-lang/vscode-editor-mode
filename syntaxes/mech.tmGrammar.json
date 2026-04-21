@@ -5,6 +5,7 @@
     { "include": "#strings" },
     { "include": "#markdown" },
     { "include": "#arrays" },
+    { "include": "#sets" },
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
     { "include": "#functions" },
@@ -138,7 +139,41 @@
           "endCaptures": {
             "0": { "name": "punctuation.definition.array.end" }
           },
-          "name": "meta.array"
+          "name": "meta.array",
+          "patterns": [
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#operators" },
+            { "include": "#arrays" },
+            { "include": "#sets" }
+          ]
+        }
+      ]
+    },
+
+    "sets": {
+      "patterns": [
+        {
+          "begin": "\\{",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.set.begin" }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.set.end" }
+          },
+          "name": "meta.set",
+          "patterns": [
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#operators" },
+            { "include": "#arrays" },
+            { "include": "#sets" }
+          ]
         }
       ]
     },
@@ -146,14 +181,14 @@
     "assignment": {
       "patterns": [
         {
-          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?:\\s*<([A-Za-z_][A-Za-z0-9_]*)>)?(?=\\s*:=)",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?:\\s*<([^>]+)>)?(?=\\s*:=)",
           "captures": {
             "1": { "name": "variable.other.definition" },
             "2": { "name": "entity.name.type.kind" }
           }
         },
         {
-          "match": "(<)([A-Za-z_][A-Za-z0-9_]*)(>)(?=\\s*:=)",
+          "match": "(<)([^>]+)(>)(?=\\s*:=)",
           "captures": {
             "1": { "name": "punctuation.definition.type.begin" },
             "2": { "name": "entity.name.type.kind" },
@@ -170,7 +205,11 @@
     "kindAnnotations": {
       "patterns": [
         {
-          "match": "(<)([A-Za-z_][A-Za-z0-9_]*)(>)",
+          "match": "(?:\\[[A-Za-z_][A-Za-z0-9_]*\\]|\\{[A-Za-z_][A-Za-z0-9_]*\\}):\\d+(?:,\\d+)*",
+          "name": "entity.name.type.kind"
+        },
+        {
+          "match": "(<)([^>]+)(>)",
           "captures": {
             "1": { "name": "punctuation.definition.type.begin" },
             "2": { "name": "entity.name.type.kind" },
