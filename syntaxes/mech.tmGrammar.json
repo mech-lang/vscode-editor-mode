@@ -4,6 +4,7 @@
     { "include": "#strings" },
     { "include": "#markdown" },
     { "include": "#comments" },
+    { "include": "#traceLogs" },
     { "include": "#blockHeaders" },
     { "include": "#tables" },
     { "include": "#arrays" },
@@ -38,6 +39,15 @@
               "include": "#inlineMarkdown"
             }
           ]
+        }
+      ]
+    },
+
+    "traceLogs": {
+      "patterns": [
+        {
+          "match": "^\\[trace\\]\\[fsm\\].*$",
+          "name": "markup.raw.block.trace"
         }
       ]
     },
