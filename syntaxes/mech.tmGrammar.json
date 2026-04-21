@@ -10,6 +10,7 @@
     { "include": "#sets" },
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
+    { "include": "#fsm" },
     { "include": "#patternMatching" },
     { "include": "#functions" },
     { "include": "#operators" },
@@ -129,6 +130,10 @@
         {
           "match": "§\\d+",
           "name": "constant.other.reference"
+        },
+        {
+          "match": "\\{\\{:[A-Za-z_][A-Za-z0-9_]*\\}\\}",
+          "name": "constant.other.state-reference"
         }
       ]
     },
@@ -296,6 +301,23 @@
       ]
     },
 
+    "fsm": {
+      "patterns": [
+        {
+          "match": "#[A-Za-z_][A-Za-z0-9_]*",
+          "name": "entity.name.type.fsm"
+        },
+        {
+          "match": "\\{\\{:[A-Za-z_][A-Za-z0-9_]*\\}\\}",
+          "name": "constant.other.state-reference"
+        },
+        {
+          "match": "->",
+          "name": "punctuation.definition.transition.arrow"
+        }
+      ]
+    },
+
     "patternMatching": {
       "patterns": [
         {
@@ -303,7 +325,7 @@
           "beginCaptures": {
             "1": { "name": "punctuation.definition.pattern-branch" }
           },
-          "end": "(\\s*)(=>)",
+          "end": "(\\s*)(=>|->)",
           "endCaptures": {
             "2": { "name": "punctuation.definition.mapping.arrow" }
           },
