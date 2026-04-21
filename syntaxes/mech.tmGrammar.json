@@ -173,11 +173,11 @@
           "name": "constant.other.reference"
         },
         {
-          "match": "\\*\\*[^*]+\\*\\*",
+          "match": "\\*\\*[^\\s*][^*\\n]*[^\\s*]\\*\\*",
           "name": "markup.bold"
         },
         {
-          "match": "\\*[^*]+\\*",
+          "match": "\\*[^\\s*][^*\\n]*[^\\s*]\\*",
           "name": "markup.italic"
         },
         {
@@ -233,6 +233,7 @@
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
             { "include": "#functions" },
+            { "include": "#identifiers" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -351,6 +352,7 @@
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
             { "include": "#functions" },
+            { "include": "#identifiers" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
