@@ -17,7 +17,7 @@
     "comments": {
       "patterns": [
         {
-          "match": "--.*$",
+          "match": "^\\s*--.*$",
           "name": "comment.line.double-dash"
         }
       ]
@@ -100,6 +100,14 @@
         {
           "match": "__[^_]+__",
           "name": "markup.underline"
+        },
+        {
+          "match": "\\[([^\\]]+)\\]\\((https?:[^\\s)]+)\\)",
+          "captures": {
+            "0": { "name": "meta.link.inline.markdown" },
+            "1": { "name": "string.other.link.title.markdown" },
+            "2": { "name": "markup.underline.link.markdown" }
+          }
         },
         {
           "match": "§\\d+",
