@@ -204,7 +204,7 @@
     "tuples": {
       "patterns": [
         {
-          "begin": "\\(",
+          "begin": "\\((?=[^\\)]*,[^\\)]*\\))",
           "beginCaptures": {
             "0": { "name": "punctuation.definition.tuple.begin" }
           },
@@ -294,6 +294,13 @@
 
     "assignment": {
       "patterns": [
+        {
+          "match": "(~)\\s*([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?=\\s*:=)",
+          "captures": {
+            "1": { "name": "keyword.operator.mutability" },
+            "2": { "name": "variable.other.definition" }
+          }
+        },
         {
           "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?:\\s*<([^>]+)>)?(?=\\s*:=)",
           "captures": {
@@ -443,7 +450,7 @@
           "name": "keyword.operator.set"
         },
         {
-          "match": "[+\\-*/=|]",
+          "match": "[:+\\-*/=|^]",
           "name": "keyword.operator"
         }
       ]
@@ -490,6 +497,10 @@
 
     "identifiers": {
       "patterns": [
+        {
+          "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
+          "name": "variable.other.readwrite.mutable"
+        },
         {
           "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(\\s*[⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉]\\s*)([A-Za-z_][A-Za-z0-9_/\\-]*)\\b",
           "captures": {
