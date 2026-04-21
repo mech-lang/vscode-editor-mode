@@ -5,6 +5,7 @@
     { "include": "#markdown" },
     { "include": "#comments" },
     { "include": "#blockHeaders" },
+    { "include": "#tables" },
     { "include": "#arrays" },
     { "include": "#tuples" },
     { "include": "#sets" },
@@ -170,6 +171,31 @@
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
+          ]
+        }
+      ]
+    },
+
+    "tables": {
+      "patterns": [
+        {
+          "begin": "^(\\s*)\\|",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.table.row.begin" }
+          },
+          "end": "\\|\\s*$",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.table.row.end" }
+          },
+          "name": "meta.table.row",
+          "patterns": [
+            { "match": "\\|", "name": "punctuation.separator.table.column" },
+            { "include": "#kindAnnotations" },
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#identifiers" }
           ]
         }
       ]
@@ -352,7 +378,7 @@
     "patternMatching": {
       "patterns": [
         {
-          "begin": "^(\\s*[|├└]\\s+)",
+          "begin": "^(\\s*[|├└]\\s+)(?=.*(?:=>|->))",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.pattern-branch" }
           },
@@ -409,6 +435,14 @@
     "operators": {
       "patterns": [
         {
+          "match": "[⋈⟕⟖⟗⋉▷]",
+          "name": "keyword.operator.relational.join"
+        },
+        {
+          "match": "[∪∩∖⊆⊇∈∉]",
+          "name": "keyword.operator.set"
+        },
+        {
           "match": "[+\\-*/=|]",
           "name": "keyword.operator"
         }
@@ -457,7 +491,7 @@
     "identifiers": {
       "patterns": [
         {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*[\\[\\]()=|<>?:])",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
           "name": "variable.other.readwrite"
         }
       ]
