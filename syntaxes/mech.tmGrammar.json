@@ -4,6 +4,7 @@
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#markdown" },
+    { "include": "#blockHeaders" },
     { "include": "#arrays" },
     { "include": "#sets" },
     { "include": "#assignment" },
@@ -153,6 +154,37 @@
       ]
     },
 
+    "blockHeaders": {
+      "patterns": [
+        {
+          "begin": "(\\b[A-Za-z_][A-Za-z0-9_-]*:[A-Za-z_][A-Za-z0-9_-]*\\b)(\\{)",
+          "beginCaptures": {
+            "1": { "name": "entity.name.section.block-header" },
+            "2": { "name": "punctuation.definition.block.options.begin" }
+          },
+          "end": "(\\})",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.block.options.end" }
+          },
+          "name": "meta.block.header",
+          "patterns": [
+            {
+              "match": "\\b[A-Za-z_][A-Za-z0-9_-]*\\b(?=\\s*:)",
+              "name": "variable.other.option-key"
+            },
+            {
+              "match": ":",
+              "name": "punctuation.separator.key-value"
+            },
+            {
+              "match": "\\b(true|false)\\b",
+              "name": "constant.language.boolean"
+            }
+          ]
+        }
+      ]
+    },
+
     "sets": {
       "patterns": [
         {
@@ -266,7 +298,7 @@
     "atoms": {
       "patterns": [
         {
-          "match": ":[A-Za-z_][A-Za-z0-9_]*",
+          "match": ":[A-Za-z_][A-Za-z0-9_/-]*",
           "name": "constant.language"
         }
       ]
