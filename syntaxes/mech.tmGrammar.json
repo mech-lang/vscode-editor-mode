@@ -30,6 +30,9 @@
             {
               "match": "\\{[^}]+\\}",
               "name": "meta.comment.inline-eval"
+            },
+            {
+              "include": "#inlineMarkdown"
             }
           ]
         }
