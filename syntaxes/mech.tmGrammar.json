@@ -451,10 +451,6 @@
         {
           "match": ",",
           "name": "punctuation.separator.comprehension"
-        },
-        {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b",
-          "name": "variable.other.readwrite.comprehension"
         }
       ]
     },
