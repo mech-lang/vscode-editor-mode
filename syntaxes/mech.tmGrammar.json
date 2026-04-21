@@ -232,6 +232,7 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -284,6 +285,7 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
             { "include": "#identifiers" },
             { "match": ",", "name": "punctuation.separator.tuple" },
             { "include": "#arrays" },
@@ -348,6 +350,7 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -567,6 +570,10 @@
 
     "identifiers": {
       "patterns": [
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-']*(?:\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*)+\\b",
+          "name": "variable.other.readwrite.indexed"
+        },
         {
           "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
           "name": "variable.other.readwrite.mutable"
