@@ -23,7 +23,7 @@
     "comments": {
       "patterns": [
         {
-          "begin": "--(?=\\s|\\{)",
+          "begin": "--",
           "end": "$",
           "name": "comment.line.double-dash",
           "patterns": [
