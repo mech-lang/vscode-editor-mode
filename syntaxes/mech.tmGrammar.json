@@ -5,6 +5,7 @@
     { "include": "#markdown" },
     { "include": "#comments" },
     { "include": "#blockHeaders" },
+    { "include": "#tables" },
     { "include": "#arrays" },
     { "include": "#tuples" },
     { "include": "#sets" },
@@ -44,6 +45,58 @@
     "markdown": {
       "patterns": [
         {
+          "begin": "^```\\s*mech\\b.*$",
+          "end": "^```\\s*$",
+          "name": "meta.embedded.block.mech",
+          "patterns": [
+            { "include": "#comments" },
+            { "include": "#blockHeaders" },
+            { "include": "#tables" },
+            { "include": "#arrays" },
+            { "include": "#tuples" },
+            { "include": "#sets" },
+            { "include": "#assignment" },
+            { "include": "#kindAnnotations" },
+            { "include": "#fsm" },
+            { "include": "#patternMatching" },
+            { "include": "#functions" },
+            { "include": "#operators" },
+            { "include": "#booleans" },
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#identifiers" },
+            { "include": "#terminators" }
+          ]
+        },
+        {
+          "begin": "^```\\s*$",
+          "end": "^```\\s*$",
+          "name": "markup.raw.block.fenced"
+        },
+        {
+          "begin": "^```(?!\\s*mech\\b)\\s*\\S.*$",
+          "end": "^```\\s*$",
+          "name": "markup.raw.block.fenced"
+        },
+        {
+          "match": "^\\s*\\$\\$.*$",
+          "name": "markup.raw.block.latex"
+        },
+        {
+          "match": "^(\\[\\^[^\\]]+\\])(\\s*:\\s*)",
+          "captures": {
+            "1": { "name": "constant.other.footnote.label" },
+            "2": { "name": "punctuation.separator.key-value" }
+          }
+        },
+        {
+          "match": "^(\\[\\d+\\])(\\s*:\\s*)",
+          "captures": {
+            "1": { "name": "constant.other.reference.label" },
+            "2": { "name": "punctuation.separator.key-value" }
+          }
+        },
+        {
           "begin": "^(\\s*)(\\()(\\d+(?:\\.\\d+)*)(\\))(\\s+.*)?$",
           "beginCaptures": {
             "2": { "name": "punctuation.definition.section.begin" },
@@ -55,13 +108,13 @@
           "name": "markup.heading.mech"
         },
         {
-          "begin": "^(\\s*)(\\d+)(\\.)(\\s+.*)$",
-          "beginCaptures": {
+          "match": "^(\\s*)(\\d+)(\\.)(\\s+.*)\\n(\\s*-{2,}\\s*)$",
+          "captures": {
             "2": { "name": "entity.name.section" },
             "3": { "name": "punctuation.definition.section" },
-            "4": { "name": "markup.heading" }
+            "4": { "name": "markup.heading" },
+            "5": { "name": "markup.heading.setext.2" }
           },
-          "end": "^(?=-{2,}\\s*$)",
           "name": "markup.heading.numbered"
         },
 
@@ -108,11 +161,23 @@
           "name": "markup.inline.raw"
         },
         {
-          "match": "\\*\\*[^*]+\\*\\*",
+          "match": "\\$\\$[^$]+\\$\\$",
+          "name": "markup.inline.raw.latex"
+        },
+        {
+          "match": "\\[\\^[^\\]]+\\]",
+          "name": "constant.other.footnote.reference"
+        },
+        {
+          "match": "\\[\\d+\\]",
+          "name": "constant.other.reference"
+        },
+        {
+          "match": "\\*\\*[^\\s*][^*\\n]*[^\\s*]\\*\\*",
           "name": "markup.bold"
         },
         {
-          "match": "\\*[^*]+\\*",
+          "match": "\\*[^\\s*][^*\\n]*[^\\s*]\\*",
           "name": "markup.italic"
         },
         {
@@ -167,6 +232,8 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
+            { "include": "#identifiers" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -175,10 +242,35 @@
       ]
     },
 
+    "tables": {
+      "patterns": [
+        {
+          "begin": "^(?=\\s*\\|.*\\|\\s*$)(\\s*\\|)",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.table.row.begin" }
+          },
+          "end": "\\|\\s*$",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.table.row.end" }
+          },
+          "name": "meta.table.row",
+          "patterns": [
+            { "match": "\\|", "name": "punctuation.separator.table.column" },
+            { "include": "#kindAnnotations" },
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#identifiers" }
+          ]
+        }
+      ]
+    },
+
     "tuples": {
       "patterns": [
         {
-          "begin": "\\(",
+          "begin": "\\((?=[^\\)]*,[^\\)]*\\))",
           "beginCaptures": {
             "0": { "name": "punctuation.definition.tuple.begin" }
           },
@@ -194,6 +286,7 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
             { "include": "#identifiers" },
             { "match": ",", "name": "punctuation.separator.tuple" },
             { "include": "#arrays" },
@@ -258,6 +351,8 @@
             { "include": "#strings" },
             { "include": "#kindAnnotations" },
             { "include": "#comprehensions" },
+            { "include": "#functions" },
+            { "include": "#identifiers" },
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
@@ -268,6 +363,19 @@
 
     "assignment": {
       "patterns": [
+        {
+          "match": "^\\s*([\\p{L}_][\\p{L}\\p{N}_/\\-]*)(?=\\s*=\\s*[^=])",
+          "captures": {
+            "1": { "name": "variable.other.definition" }
+          }
+        },
+        {
+          "match": "(~)\\s*([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?=\\s*:=)",
+          "captures": {
+            "1": { "name": "keyword.operator.mutability" },
+            "2": { "name": "variable.other.definition" }
+          }
+        },
         {
           "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?:\\s*<([^>]+)>)?(?=\\s*:=)",
           "captures": {
@@ -285,6 +393,10 @@
         },
         {
           "match": ":=",
+          "name": "keyword.operator.assignment"
+        },
+        {
+          "match": "(?<![<>=!])=(?![=>=])",
           "name": "keyword.operator.assignment"
         }
       ]
@@ -310,7 +422,7 @@
     "fsm": {
       "patterns": [
         {
-          "match": "#[A-Za-z_][A-Za-z0-9_]*",
+          "match": "#[A-Za-z_][A-Za-z0-9_/-]*",
           "name": "entity.name.function"
         },
         {
@@ -341,10 +453,6 @@
         {
           "match": ",",
           "name": "punctuation.separator.comprehension"
-        },
-        {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b",
-          "name": "variable.other.readwrite.comprehension"
         }
       ]
     },
@@ -352,7 +460,7 @@
     "patternMatching": {
       "patterns": [
         {
-          "begin": "^(\\s*[|├└]\\s+)",
+          "begin": "^(\\s*[|├└]\\s+)(?=.*(?:=>|->))",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.pattern-branch" }
           },
@@ -372,8 +480,8 @@
             { "include": "#comprehensions" },
             { "include": "#functions" },
             { "include": "#identifiers" },
-            { "include": "#operators" },
-            { "match": "\\*", "name": "constant.language.wildcard" }
+            { "match": "\\*", "name": "constant.language.wildcard" },
+            { "include": "#operators" }
           ]
         },
         {
@@ -389,10 +497,6 @@
         {
           "match": "=>",
           "name": "punctuation.definition.mapping.arrow"
-        },
-        {
-          "match": "\\*",
-          "name": "constant.language.wildcard"
         }
       ]
     },
@@ -400,7 +504,7 @@
     "functions": {
       "patterns": [
         {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*(?=\\()",
+          "match": "(?<!:)\\b[A-Za-z_][A-Za-z0-9_/\\-]*(?=\\()",
           "name": "entity.name.function"
         }
       ]
@@ -409,7 +513,19 @@
     "operators": {
       "patterns": [
         {
-          "match": "[+\\-*/=|]",
+          "match": "[⋈⟕⟖⟗⋉▷]",
+          "name": "keyword.operator.relational.join"
+        },
+        {
+          "match": "[∪∩∖⊆⊇∈∉]",
+          "name": "keyword.operator.set"
+        },
+        {
+          "match": "'",
+          "name": "keyword.operator.transpose"
+        },
+        {
+          "match": "[+\\-*/=|^]",
           "name": "keyword.operator"
         }
       ]
@@ -457,7 +573,39 @@
     "identifiers": {
       "patterns": [
         {
-          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*[\\[\\]()=|<>?:])",
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\.[\\p{L}_])",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\.[\\p{L}_][\\p{L}\\p{N}_/\\-']*",
+          "name": "entity.other.attribute-name.member-access"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=')",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\s*(?:\\*\\*|[+\\-*/=]))",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "~[A-Za-z_][A-Za-z0-9_/\\-]*",
+          "name": "variable.other.readwrite.mutable"
+        },
+        {
+          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(\\s*[⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉]\\s*)([A-Za-z_][A-Za-z0-9_/\\-]*)\\b",
+          "captures": {
+            "1": { "name": "variable.other.readwrite" },
+            "2": { "name": "keyword.operator" },
+            "3": { "name": "variable.other.readwrite" }
+          }
+        },
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "\\b[\\p{L}_][\\p{L}\\p{N}_/\\-]*\\b(?=\\s*(?!\\[\\^)[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
           "name": "variable.other.readwrite"
         }
       ]
