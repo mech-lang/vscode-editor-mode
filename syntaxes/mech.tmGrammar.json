@@ -491,6 +491,14 @@
     "identifiers": {
       "patterns": [
         {
+          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(\\s*[⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉]\\s*)([A-Za-z_][A-Za-z0-9_/\\-]*)\\b",
+          "captures": {
+            "1": { "name": "variable.other.readwrite" },
+            "2": { "name": "keyword.operator" },
+            "3": { "name": "variable.other.readwrite" }
+          }
+        },
+        {
           "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*\\b(?=\\s*[\\[\\]()=|<>?:⋈⟕⟖⟗⋉▷∪∩∖⊆⊇∈∉])",
           "name": "variable.other.readwrite"
         }
