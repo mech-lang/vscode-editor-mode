@@ -5,6 +5,7 @@
     { "include": "#markdown" },
     { "include": "#comments" },
     { "include": "#blockHeaders" },
+    { "include": "#tables" },
     { "include": "#arrays" },
     { "include": "#tuples" },
     { "include": "#sets" },
@@ -170,6 +171,31 @@
             { "include": "#operators" },
             { "include": "#arrays" },
             { "include": "#sets" }
+          ]
+        }
+      ]
+    },
+
+    "tables": {
+      "patterns": [
+        {
+          "begin": "^(\\s*)\\|",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.table.row.begin" }
+          },
+          "end": "\\|\\s*$",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.table.row.end" }
+          },
+          "name": "meta.table.row",
+          "patterns": [
+            { "match": "\\|", "name": "punctuation.separator.table-column" },
+            { "include": "#kindAnnotations" },
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#identifiers" }
           ]
         }
       ]
@@ -408,6 +434,14 @@
 
     "operators": {
       "patterns": [
+        {
+          "match": "\\btable\\/(join|left-outer-join|right-outer-join|full-outer-join|left-semi-join|left-anti-join)\\b",
+          "name": "keyword.operator.relational"
+        },
+        {
+          "match": "[⋈⟕⟖⟗⋉▷]",
+          "name": "keyword.operator.relational"
+        },
         {
           "match": "[+\\-*/=|]",
           "name": "keyword.operator"
