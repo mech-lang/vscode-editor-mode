@@ -179,7 +179,7 @@
     "tables": {
       "patterns": [
         {
-          "begin": "^(\\s*)\\|",
+          "begin": "^(?=\\s*\\|.*\\|\\s*$)(\\s*\\|)",
           "beginCaptures": {
             "0": { "name": "punctuation.definition.table.row.begin" }
           },
