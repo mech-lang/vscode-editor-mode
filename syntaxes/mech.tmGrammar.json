@@ -4,7 +4,6 @@
     { "include": "#strings" },
     { "include": "#markdown" },
     { "include": "#comments" },
-    { "include": "#traceLogs" },
     { "include": "#blockHeaders" },
     { "include": "#tables" },
     { "include": "#arrays" },
@@ -43,17 +42,13 @@
       ]
     },
 
-    "traceLogs": {
-      "patterns": [
-        {
-          "match": "^\\[trace\\]\\[fsm\\].*$",
-          "name": "markup.raw.block.trace"
-        }
-      ]
-    },
-
     "markdown": {
       "patterns": [
+        {
+          "begin": "^```.*$",
+          "end": "^```\\s*$",
+          "name": "markup.raw.block.fenced"
+        },
         {
           "begin": "^(\\s*)(\\()(\\d+(?:\\.\\d+)*)(\\))(\\s+.*)?$",
           "beginCaptures": {
