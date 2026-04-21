@@ -11,7 +11,6 @@
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
     { "include": "#fsm" },
-    { "include": "#comprehensions" },
     { "include": "#patternMatching" },
     { "include": "#functions" },
     { "include": "#operators" },
