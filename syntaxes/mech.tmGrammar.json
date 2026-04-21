@@ -79,6 +79,10 @@
           "name": "markup.raw.block.fenced"
         },
         {
+          "match": "^\\s*\\$\\$.*$",
+          "name": "markup.raw.block.latex"
+        },
+        {
           "begin": "^(\\s*)(\\()(\\d+(?:\\.\\d+)*)(\\))(\\s+.*)?$",
           "beginCaptures": {
             "2": { "name": "punctuation.definition.section.begin" },
@@ -141,6 +145,10 @@
         {
           "match": "`[^`]+`",
           "name": "markup.inline.raw"
+        },
+        {
+          "match": "\\$\\$[^$]+\\$\\$",
+          "name": "markup.inline.raw.latex"
         },
         {
           "match": "\\*\\*[^*]+\\*\\*",
