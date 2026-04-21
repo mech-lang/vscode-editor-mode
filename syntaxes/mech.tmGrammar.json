@@ -1,0 +1,206 @@
+{
+  "scopeName": "source.mech",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#markdown" },
+    { "include": "#arrays" },
+    { "include": "#assignment" },
+    { "include": "#functions" },
+    { "include": "#operators" },
+    { "include": "#booleans" },
+    { "include": "#numbers" },
+    { "include": "#atoms" }
+  ],
+  "repository": {
+
+    "comments": {
+      "patterns": [
+        {
+          "match": "--.*$",
+          "name": "comment.line.double-dash"
+        }
+      ]
+    },
+
+    "markdown": {
+      "patterns": [
+        {
+          "begin": "^(\\s*)(\\()(\\d+(?:\\.\\d+)*)(\\))(\\s+.*)?$",
+          "beginCaptures": {
+            "2": { "name": "punctuation.definition.section.begin" },
+            "3": { "name": "entity.name.section" },
+            "4": { "name": "punctuation.definition.section.end" },
+            "5": { "name": "markup.heading" }
+          },
+          "end": "$",
+          "name": "markup.heading.mech"
+        },
+        {
+          "begin": "^(\\s*)(\\d+)(\\.)(\\s+.*)$",
+          "beginCaptures": {
+            "2": { "name": "entity.name.section" },
+            "3": { "name": "punctuation.definition.section" },
+            "4": { "name": "markup.heading" }
+          },
+          "end": "^(?=-{2,}\\s*$)",
+          "name": "markup.heading.numbered"
+        },
+
+        {
+          "match": "^=+$",
+          "name": "markup.heading.setext.1"
+        },
+        {
+          "match": "^-{2,}\\s*$",
+          "name": "markup.heading.setext.2"
+        },
+        {
+          "begin": "^(\\s*)(\\d+)(\\.)(\\s+)",
+          "beginCaptures": {
+            "2": { "name": "constant.numeric" },
+            "3": { "name": "punctuation.definition.list.begin" }
+          },
+          "end": "(?=^\\s*$|^\\s*(?:[-\\d]|\\([^)]*\\)|-\\[[ xX]\\]))",
+          "name": "meta.list.ordered",
+          "patterns": [
+            { "include": "#inlineMarkdown" }
+          ]
+        },
+        {
+          "begin": "^(\\s*)(-\\[[ xX]\\]|-\\([^)]*\\)|-)\\s+",
+          "beginCaptures": {
+            "2": { "name": "punctuation.definition.list.begin" }
+          },
+          "end": "(?=^\\s*$|^\\s*(?:[-\\d]|\\([^)]*\\)|-\\[[ xX]\\]))",
+          "name": "meta.list.item",
+          "patterns": [
+            { "include": "#inlineMarkdown" }
+          ]
+        },
+
+        { "include": "#inlineMarkdown" }
+      ]
+    },
+
+    "inlineMarkdown": {
+      "patterns": [
+        {
+          "match": "`[^`]+`",
+          "name": "markup.inline.raw"
+        },
+        {
+          "match": "\\*\\*[^*]+\\*\\*",
+          "name": "markup.bold"
+        },
+        {
+          "match": "\\*[^*]+\\*",
+          "name": "markup.italic"
+        },
+        {
+          "match": "__[^_]+__",
+          "name": "markup.underline"
+        },
+        {
+          "match": "§\\d+",
+          "name": "constant.other.reference"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double"
+        }
+      ]
+    },
+
+    "arrays": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.array.begin" }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.array.end" }
+          },
+          "name": "meta.array"
+        }
+      ]
+    },
+
+    "assignment": {
+      "patterns": [
+        {
+          "match": "\\b([A-Za-z_][A-Za-z0-9_/\\-]*)\\b(?=\\s*:=)",
+          "captures": {
+            "1": { "name": "variable.other.definition" }
+          }
+        },
+        {
+          "match": ":=",
+          "name": "keyword.operator.assignment"
+        }
+      ]
+    },
+
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b[A-Za-z_][A-Za-z0-9_/\\-]*(?=\\()",
+          "name": "entity.name.function"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "match": "[+\\-*/=]",
+          "name": "keyword.operator"
+        }
+      ]
+    },
+
+    "booleans": {
+      "patterns": [
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float",
+          "match": "\\b-?\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.rational",
+          "match": "\\b-?\\d+/\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.integer",
+          "match": "\\b(0x[0-9A-Fa-f]+|0o[0-7]+|0b[01]+|0d\\d+|\\d+)\\b"
+        }
+      ]
+    },
+
+    "atoms": {
+      "patterns": [
+        {
+          "match": ":[A-Za-z_][A-Za-z0-9_]*",
+          "name": "constant.language"
+        }
+      ]
+    }
+
+  }
+}

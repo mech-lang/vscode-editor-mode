@@ -1,0 +1,41 @@
+{
+  "name": "mech-lang-support",
+  "displayName": "mech-lang-support",
+  "description": "Mech language support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": ["Programming Languages"],
+  "activationEvents": [
+    "onLanguage:mech"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "mech",
+        "aliases": ["Mech"],
+        "extensions": [".mec"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mech",
+        "scopeName": "source.mech",
+        "path": "./syntaxes/mech.tmGrammar.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.116.0",
+    "@types/node": "22.x",
+    "typescript": "^5.9.3"
+  }
+}
