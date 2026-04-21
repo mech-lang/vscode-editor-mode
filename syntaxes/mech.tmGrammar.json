@@ -281,6 +281,10 @@
     "numbers": {
       "patterns": [
         {
+          "name": "constant.numeric.typed",
+          "match": "\\b-?\\d+(?:[uif]\\d+)\\b"
+        },
+        {
           "name": "constant.numeric.float",
           "match": "\\b-?\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
         },
