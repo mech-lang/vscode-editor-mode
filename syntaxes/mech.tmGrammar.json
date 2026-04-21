@@ -6,6 +6,7 @@
     { "include": "#comments" },
     { "include": "#blockHeaders" },
     { "include": "#arrays" },
+    { "include": "#tuples" },
     { "include": "#sets" },
     { "include": "#assignment" },
     { "include": "#kindAnnotations" },
@@ -167,6 +168,33 @@
       ]
     },
 
+    "tuples": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.tuple.begin" }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tuple.end" }
+          },
+          "name": "meta.tuple",
+          "patterns": [
+            { "include": "#numbers" },
+            { "include": "#atoms" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#identifiers" },
+            { "match": ",", "name": "punctuation.separator.tuple" },
+            { "include": "#arrays" },
+            { "include": "#sets" },
+            { "include": "#tuples" }
+          ]
+        }
+      ]
+    },
+
     "blockHeaders": {
       "patterns": [
         {
@@ -271,12 +299,27 @@
     "patternMatching": {
       "patterns": [
         {
-          "match": "^(\\s*[|├└]\\s+)([^=\\n]+?)(\\s*)(=>)",
-          "captures": {
-            "1": { "name": "punctuation.definition.pattern-branch" },
-            "2": { "name": "variable.other.readwrite.pattern-guard" },
-            "4": { "name": "punctuation.definition.mapping.arrow" }
-          }
+          "begin": "^(\\s*[|├└]\\s+)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.pattern-branch" }
+          },
+          "end": "(\\s*)(=>)",
+          "endCaptures": {
+            "2": { "name": "punctuation.definition.mapping.arrow" }
+          },
+          "name": "meta.pattern.guard",
+          "patterns": [
+            { "include": "#arrays" },
+            { "include": "#tuples" },
+            { "include": "#sets" },
+            { "include": "#atoms" },
+            { "include": "#numbers" },
+            { "include": "#booleans" },
+            { "include": "#strings" },
+            { "include": "#identifiers" },
+            { "include": "#operators" },
+            { "match": "\\*", "name": "constant.language.wildcard" }
+          ]
         },
         {
           "match": "^\\s*([|├└])\\s+",
