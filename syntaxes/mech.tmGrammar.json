@@ -94,13 +94,13 @@
           "name": "markup.heading.mech"
         },
         {
-          "begin": "^(\\s*)(\\d+)(\\.)(\\s+.*)(?=\\n\\s*-{2,}\\s*$)",
-          "beginCaptures": {
+          "match": "^(\\s*)(\\d+)(\\.)(\\s+.*)\\n(\\s*-{2,}\\s*)$",
+          "captures": {
             "2": { "name": "entity.name.section" },
             "3": { "name": "punctuation.definition.section" },
-            "4": { "name": "markup.heading" }
+            "4": { "name": "markup.heading" },
+            "5": { "name": "markup.heading.setext.2" }
           },
-          "end": "$",
           "name": "markup.heading.numbered"
         },
 
