@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://gitlab.com/mech-lang/assets/-/raw/main/images/mika/mika-scene-vscode.png?ref_type=heads" alt="Mika" width="220" />
+  <img src="https://gitlab.com/mech-lang/assets/-/raw/main/images/mika/mika-scene-vscode.png?ref_type=heads" alt="Mika using VS Code"/>
 </p>
 
 # Mech Language Support for VS Code
