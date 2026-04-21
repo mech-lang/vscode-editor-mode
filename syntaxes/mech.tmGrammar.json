@@ -525,7 +525,7 @@
           "name": "keyword.operator.transpose"
         },
         {
-          "match": "[:+\\-*/=|^]",
+          "match": "[+\\-*/=|^]",
           "name": "keyword.operator"
         }
       ]
